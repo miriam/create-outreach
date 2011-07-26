@@ -1,0 +1,24 @@
+<h1>Listing funders</h1>
+
+<table>
+  <tr>
+    <th>Shortname</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @funders.each do |funder| %>
+  <tr>
+    <td><%=h funder.shortname %></td>
+    <td><%=h funder.name %></td>
+    <td><%=h funder.description %></td>
+    <td><%= link_to 'Show', funder %></td>
+    <td><%= link_to 'Edit', edit_funder_path(funder) %></td>
+    <td><%= link_to 'Destroy', funder, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New funder', new_funder_path %>

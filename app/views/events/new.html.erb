@@ -1,0 +1,120 @@
+<h1>New event</h1>
+
+<% form_for(@event) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :page_id %>
+    <%= f.select("page_id", Page.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true }) %>
+  </p>
+
+  <label for="funder_ids">Funders</label></b>
+  <table>
+  <tr>
+  <% @funders.each do |funder| %>
+  <th> <%= funder.shortname %> </th>
+  <% end %>
+  </tr>
+  <tr>
+  <% @funders.each do |funder| %>
+  <td><%= check_box_tag("funder_ids", funder.id)  %></td>
+  <% end %>
+  </tr>
+  </table>
+
+  <hr/>
+  <p>
+    <%= f.label :organization %>
+    <%= f.select("organization", organizations, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new organization: 
+  <%= f.text_field :organization %>
+
+  <hr/>
+  <p>
+    <%= f.label :location %>
+    <%= f.select("location", locations, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new location: 
+  <%= f.text_field :location %>
+
+  <hr/>
+  <p>
+    <%= f.label :arena %>
+    <%= f.select("arena", arenas, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new arena: 
+  <%= f.text_field :arena %>
+
+  <hr/>
+  <p>
+    <%= f.label :geographic_scope %>
+    <%= f.select("geographic_scope", geographic_scopes, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new geographic_scope: 
+  <%= f.text_field :geographic_scope %>
+
+  <hr/>
+  <p>
+    <%= f.label :connection_dialog %>
+    <%= f.select("connection_dialog", connection_dialogs, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new connection_dialog: 
+  <%= f.text_field :connection_dialog %>
+
+  <hr/>
+  <p>
+    <%= f.label :affiliation %>
+    <%= f.select("affiliation", affiliations, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new affiliation: 
+  <%= f.text_field :affiliation %>
+
+  <hr/>
+  <p>
+    <%= f.label :theme %>
+    <%= f.select("theme", themes, { :include_blank => true }) %>
+  </p>
+  <p>Or add a new theme: 
+  <%= f.text_field :theme %>
+  <hr/>
+
+
+  <p>
+    <%= f.label :pre_school %><br />
+    <%= f.text_field :pre_school %>
+  </p>
+  <p>
+    <%= f.label :elementary %><br />
+    <%= f.text_field :elementary %>
+  </p>
+  <p>
+    <%= f.label :middle_school %><br />
+    <%= f.text_field :middle_school %>
+  </p>
+  <p>
+    <%= f.label :high_school %><br />
+    <%= f.text_field :high_school %>
+  </p>
+  <p>
+    <%= f.label :adult %><br />
+    <%= f.text_field :adult %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', events_path %>

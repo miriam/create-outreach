@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Create Lab</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<%- end -%>
+ 
+<% if current_user %>
+You are logged in as: <%= current_user.name %> ::: <%= link_to "logout", "/logout" %>
+
+<br/>
+View all: 
+<%= link_to "Events", events_path %>
+<%= link_to "Pages", pages_path %>
+<%= link_to "Programs", programs_path %>
+<%= link_to "Funders", funders_path %>
+
+<br/>
+Create new: 
+<%= link_to "Event", new_event_path %>
+<%= link_to "Page", new_page_path %>
+<%= link_to "Program", new_program_path %>
+<%= link_to "Funder", new_funder_path %>
+<hr/>
+<% end %>
+
+<p style="color: green"><%= notice %></p>
+
+<%= yield %>
+
+</body>
+</html>

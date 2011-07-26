@@ -1,0 +1,137 @@
+<h1>Editing event</h1>
+
+<% form_for(@event) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :page_id %>
+    <%= f.select("page_id", Page.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true }) %>
+  </p>
+
+  <label for="funder_ids">Funders</label></b>
+  <table>
+  <tr>
+  <% @funders.each do |funder| %>
+  <th> <%= funder.shortname %> </th>
+  <% end %>
+  </tr>
+  <tr>
+  <% @funders.each do |funder| %>
+  <td><%= check_box_tag("event[funder_ids][]", funder.id, @event.funders.include?(funder))  %></td>
+  <% end %>
+  </tr>
+  </table>
+
+  <hr/>
+  <p>
+    <%= f.label :organization %>
+    <%= select_tag( "event[organization][]", 
+                    options_for_select(organizations << '', @event.organization_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new organization: 
+  <%= text_field_tag "event[organization][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :location %>
+    <%= select_tag( "event[location][]", 
+                    options_for_select(locations, @event.location_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new location: 
+  <%= text_field_tag "event[location][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :arena %>
+    <%= select_tag( "event[arena][]", 
+                    options_for_select(arenas, @event.arena_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new arena: 
+  <%= text_field_tag "event[arena][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :geographic_scope %>
+    <%= select_tag( "event[geographic_scope][]", 
+                    options_for_select(geographic_scopes, @event.geographic_scope_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new geographic_scope: 
+  <%= text_field_tag "event[geographic_scope][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :connection_dialog %>
+    <%= select_tag( "event[connection_dialog][]", 
+                    options_for_select(connection_dialogs, @event.connection_dialog_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new connection_dialog: 
+  <%= text_field_tag "event[connection_dialog][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :affiliation %>
+    <%= select_tag( "event[affiliation][]", 
+                    options_for_select(affiliations, @event.affiliation_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new affiliation: 
+  <%= text_field_tag "event[affiliation][]" %>
+  <hr/>
+
+  <p>
+    <%= f.label :theme %>
+    <%= select_tag( "event[theme][]", 
+                    options_for_select(themes, @event.theme_list.first.to_s),
+                    { :include_blank => true } ) %>
+  </p>
+  <p>Or add a new theme: 
+  <%= text_field_tag "event[theme][]" %>
+  <hr/>
+
+
+  <p>
+    <%= f.label :pre_school %><br />
+    <%= f.text_field :pre_school %>
+  </p>
+  <p>
+    <%= f.label :elementary %><br />
+    <%= f.text_field :elementary %>
+  </p>
+  <p>
+    <%= f.label :middle_school %><br />
+    <%= f.text_field :middle_school %>
+  </p>
+  <p>
+    <%= f.label :high_school %><br />
+    <%= f.text_field :high_school %>
+  </p>
+  <p>
+    <%= f.label :adult %><br />
+    <%= f.text_field :adult %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @event %> |
+<%= link_to 'Back', events_path %>

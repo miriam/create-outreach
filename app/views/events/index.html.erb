@@ -1,0 +1,62 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Program</th>
+    <th>Organization</th>
+    <th>Location</th>
+    <th>Page</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <% @funders.each do |f| %>
+    <th><%= f.shortname %></th>
+    <% end %>
+    <th>Arena</th>
+    <th>Pre school</th>
+    <th>Elementary</th>
+    <th>Middle school</th>
+    <th>High school</th>
+    <th>Adult</th>
+    <th>Total</th>
+    <th>Geographic Scope</th>
+    <th>Connection/Dialog</th>
+    <th>Collaborating Partner</th>
+    <th>Affiliation</th>
+    <th>Theme</th>
+    <th>Comment</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.page.program.name %></td>
+    <td><%= event.organization.first %></td>
+    <td><%= event.location.first %></td>
+    <td><%=h event.page.name %></td>
+    <td><%=h event.start_date.strftime('%D') if event.start_date %></td>
+    <td><%=h event.end_date.strftime('%D') if event.end_date %></td>
+    <% @funders.each do |f| %>
+    <td><%= event.funders.include?(f) ? '1' : '' %></td>
+    <% end %>
+    <td><%= event.arena.first %></td>
+    <td><%=h event.pre_school %></td>
+    <td><%=h event.elementary %></td>
+    <td><%=h event.middle_school %></td>
+    <td><%=h event.high_school %></td>
+    <td><%=h event.adult %></td>
+    <td><%=h event.total_participants %></td>
+    <td><%= event.geographic_scope.first %></td>
+    <td><%= event.connection_dialog.first %></td>
+    <td><%= event.collaborating_partner.first %></td>
+    <td><%= event.affiliation.first %></td>
+    <td><%= event.theme.first %></td>
+    <td><%=h event.comment %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New event', new_event_path %>

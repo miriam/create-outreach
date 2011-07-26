@@ -1,0 +1,86 @@
+libraries:
+acts_as_taggable_on
+paperclip
+
+Available filters for Pages:
+Program (page.program_id)
+Age (page.events.pre_school, page.events.elementary, page.events.middle_school,
+     page.events.high_school, page.events.adult)
+
+Funding (page.events.funders)
+Date (page.events.start_date, page.events.end_date)
+Location (page.events.location_list (tag))
+Arena (page.events.arena (tag))
+
+./script/generate scaffold Page integer:id text:name integer:program_id text:description boolean:published
+# Table name: pages
+#
+#  id                           :integer         not null, primary key
+#  name                         :text
+#  program_id                   :integer
+#  description                  :text
+#  published                    :boolean
+#  thumbnail_file_name          :string(255)
+#  thumbnail_content_type       :string(255)
+#  thumbnail_file_size          :integer
+#  thumbnail_updated_at         :datetime
+#  background_file_name         :string(255)
+#  background_content_type      :string(255)
+#  background_file_size         :integer
+#  background_updated_at        :datetime
+class Page < ActiveRecord::Base
+  has_many :events
+  belongs_to :program
+end
+
+./script/generate scaffold Program name:text description:text
+# Table name: programs
+#
+#  id             :integer         not null, primary key
+#  name           :text
+#  description    :text
+class Program < ActiveRecord::Base
+  has_many :pages
+end
+
+./script/generate scaffold Funder name:text description:text
+# Table name: funders
+#
+#  id             :integer         not null, primary key
+#  name           :text
+#  description    :text
+class Funder < ActiveRecord::Base
+  has_and_belongs_to_many :events
+end
+
+./script/generate scaffold Event page_id:integer pre_school:integer elementary:integer middle_school:integer high_school:integer adult:integer start_date:datetime end_date:datetime comment:text 
+# Table name: events
+#
+#  id             :integer         not null, primary key
+#  page_id        :integer
+#  pre_school     :integer
+#  elementary     :integer 
+#  middle_school  :integer
+#  high_school    :integer 
+#  adult          :integer
+#  start_date     :datetime
+#  end_date       :datetime
+#  comment        :text
+#  created_at     :datetime
+#  updated_at     :datetime
+class Event < ActiveRecord::Base
+  belongs_to :page
+  has_and_belongs_to_many :funders
+  acts_as_taggable_on :organization, :location, :arena, :geographic_scope, 
+    :connection_dialog, :collaborating_partner, :affiliation, :theme
+end
+
+# Table name: event_fundings
+#
+#  project_id     :integer
+#  funder_id      :integer
+
+also, tags and taggings tables are provided by acts_as_taggable_on
+
+Add a User model. Users can do CRUD on everything
+

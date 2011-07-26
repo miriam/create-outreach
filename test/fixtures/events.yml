@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  page_id: 1
+  pre_school: 1
+  elementary: 1
+  middle_school: 1
+  high_school: 1
+  adult: 1
+  start_date: 2011-07-26 14:33:35
+  end_date: 2011-07-26 14:33:35
+  comment: MyText
+
+two:
+  page_id: 1
+  pre_school: 1
+  elementary: 1
+  middle_school: 1
+  high_school: 1
+  adult: 1
+  start_date: 2011-07-26 14:33:35
+  end_date: 2011-07-26 14:33:35
+  comment: MyText

@@ -1,0 +1,88 @@
+<p>
+  <b>Page:</b>
+  <%=link_to @event.page.name, @event.page %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%=h @event.organization.first.to_s %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @event.location.first.to_s %>
+</p>
+
+<p>
+  <b>Arena:</b>
+  <%=h @event.arena.first.to_s %>
+</p>
+
+<p>
+  <b>Geographic Scope:</b>
+  <%=h @event.geographic_scope.first.to_s %>
+</p>
+
+<p>
+  <b>Connection Dialog:</b>
+  <%=h @event.connection_dialog.first.to_s %>
+</p>
+
+<p>
+  <b>Affiliation:</b>
+  <%=h @event.affiliation.first.to_s %>
+</p>
+
+<p>
+  <b>Theme:</b>
+  <%=h @event.theme.first.to_s %>
+</p>
+
+<p>
+  <b>Funders:</b>
+  <%=h @event.funders.map(&:shortname).join(", ") %>
+</p>
+
+<p>
+  <b>Pre school:</b>
+  <%=h @event.pre_school %>
+</p>
+
+<p>
+  <b>Elementary:</b>
+  <%=h @event.elementary %>
+</p>
+
+<p>
+  <b>Middle school:</b>
+  <%=h @event.middle_school %>
+</p>
+
+<p>
+  <b>High school:</b>
+  <%=h @event.high_school %>
+</p>
+
+<p>
+  <b>Adult:</b>
+  <%=h @event.adult %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @event.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @event.end_date %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @event.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
